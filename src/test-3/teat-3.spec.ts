@@ -16,9 +16,10 @@ describe('Test 3', () => {
     })
 
     it.each([
-        ['TH', ['SG20', 'TH2', 'TH19',], ['TH2', 'TH19',]],
-    ])('Test', (search, items, expected) => {
-        const res = service.test(search, items, 2)
+        ['TH', ['SG20', 'TH2', 'TH19',], 2, ['TH2', 'TH19',]],
+        ['th', ['Mother', 'Think', 'Worthy', 'Apple', 'Android'], 2, ['Think', 'Mother']]
+    ])('Test', (search, items, maxResult, expected) => {
+        const res = service.test(search, items, maxResult)
         expect(res.result).toEqual(expected);
     });
 
