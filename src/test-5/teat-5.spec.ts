@@ -12,7 +12,13 @@ describe('Test 5', () => {
         service = module.get<Test5Service>(Test5Service);
     });
 
-    it('returns the scaffold response', () => {
-        expect(service.test()).toEqual({ message: 'Test-5 scaffold' });
+    it.each([
+        [3008, 8300],
+        [1989, 9981],
+        [2679, 9762],
+        [9163, 9631]
+    ])('Test', (num, expected) => {
+        const res = service.test(num)
+        expect(res.result).toEqual(expected)
     });
 });
