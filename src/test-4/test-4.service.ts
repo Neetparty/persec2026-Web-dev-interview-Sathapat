@@ -29,20 +29,20 @@ export class Test4Service {
         for (const val of roman.split("")) {
             const currentValue = romanMap.find(({ symbol }) => symbol === val)?.value || 0
             sum += currentValue > prevValue ? currentValue - 2 * prevValue : currentValue
-            prevValue = currentValue;
+            prevValue = currentValue
         }
         return sum
 
 
     }
 
-    numberToRoman = (num: number): string => {
+    numberToRoman(num: number): string {
         let result = ''
 
         for (const { symbol, value } of romanMap) {
             while (num >= value) {
-                result += symbol;
-                num -= value;
+                result += symbol
+                num -= value
             }
         }
 
