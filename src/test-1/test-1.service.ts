@@ -9,7 +9,7 @@ const brackets = { ')': '(', '}': '{', ']': '[' }
 export class Test1Service {
     test(input: string): Test1Res {
         const newArr = []
-        if (newArr.length % 2 === 1) {
+        if (input.length % 2 === 1) {
             return {
                 result: false
             }
