@@ -3,7 +3,6 @@ import { ApiBody } from '@nestjs/swagger';
 import { Test1Service } from './test-1.service.js';
 
 export type Test1Res = {
-    input: string
     result: boolean
 }
 

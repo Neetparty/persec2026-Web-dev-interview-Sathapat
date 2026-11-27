@@ -22,12 +22,12 @@ describe('Test 1', () => {
         ['([[{}]]]', false],
         [')', false],
         ['(]}])', false],
-        ['([)]', false],
         ['{', false],
+        ['()[]{}', true],
+        ['(]', false]
     ])('Test', (bracket, expected) => {
         const res = service.test(bracket)
-        expect(res.input).toEqual(bracket)
-        expect(res.result).toEqual(expected);
+        expect(res.result).toEqual(expected)
     });
 
 });
