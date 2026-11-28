@@ -11,9 +11,9 @@ export class Test5Controller {
         schema: {
             type: 'object',
             properties: {
-                num: { type: 'number' },
+                num: { type: 'number' }
             },
-            required: ['num',],
+            required: ['num'],
         },
     })
     test5(@Body() num: number): { result: number } {
