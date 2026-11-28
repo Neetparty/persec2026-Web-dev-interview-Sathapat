@@ -3,8 +3,14 @@ import { ApiBody } from '@nestjs/swagger';
 import { Test3Service } from './test-3.service.js';
 
 export type Test3Res = {
-    result: string[]
-}
+    result: string[];
+};
+
+type Test3Request = {
+    search: string;
+    items: string[];
+    maxResult: number;
+};
 
 @Controller()
 export class Test3Controller {
@@ -16,13 +22,13 @@ export class Test3Controller {
             type: 'object',
             properties: {
                 search: { type: 'string' },
-                items: { type: 'string[]' },
+                items: { type: 'array', items: { type: 'string' } },
                 maxResult: { type: 'number' },
             },
             required: ['search', 'items', 'maxResult'],
         },
     })
-    test1(@Body() search: string, items: string[], maxResult: number): Test3Res {
-        return this.test3Service.test(search, items, maxResult);
+    test3(@Body() body: Test3Request): Test3Res {
+        return this.test3Service.test(body.search, body.items, body.maxResult);
     }
 }

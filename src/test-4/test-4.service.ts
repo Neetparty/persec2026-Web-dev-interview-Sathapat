@@ -1,10 +1,6 @@
-import { Injectable } from '@nestjs/common'; // Imports Nest's decorator so this service can be injected.
+import { Injectable } from '@nestjs/common';
 
-// Commit 1: Research using Google and using AI for create test-4 structure file
-// Ref: https://medium.com/@AlexanderObregon/solving-the-roman-to-integer-problem-on-leetcode-typescript-solutions-walkthrough-7bb0586ab9f8
-// Ref: https://dev.to/rahulgithubweb/leetcode-challenge-12-integer-to-roman-javascript-solution-1ee
-
-const romanMap = [
+const romanNumerals = [
     { value: 1000, symbol: 'M' },
     { value: 900, symbol: 'CM' },
     { value: 500, symbol: 'D' },
@@ -23,29 +19,35 @@ const romanMap = [
 @Injectable()
 export class Test4Service {
     romanToNumber(roman: string): number {
-        let sum = 0
-        let prevValue = 0
+        if (!roman) throw new RangeError('Roman numeral must not be empty.');
 
-        for (const val of roman.split("")) {
-            const currentValue = romanMap.find(({ symbol }) => symbol === val)?.value || 0
-            sum += currentValue > prevValue ? currentValue - 2 * prevValue : currentValue
-            prevValue = currentValue
-        }
-        return sum
+        let remaining = roman;
+        let number = 0;
 
-
-    }
-
-    numberToRoman(num: number): string {
-        let result = ''
-
-        for (const { symbol, value } of romanMap) {
-            while (num >= value) {
-                result += symbol
-                num -= value
+        for (const { symbol, value } of romanNumerals) {
+            while (remaining.startsWith(symbol)) {
+                number += value;
+                remaining = remaining.slice(symbol.length);
             }
         }
 
-        return result
+        if (remaining || this.numberToRoman(number) !== roman) throw new RangeError('Invalid Roman numeral.');
+        return number;
+    }
+
+    numberToRoman(number: number): string {
+        if (!Number.isSafeInteger(number) || number <= 0) throw new RangeError('Number must be a positive safe integer.');
+
+        let remaining = number;
+        let roman = '';
+
+        for (const { symbol, value } of romanNumerals) {
+            while (remaining >= value) {
+                roman += symbol;
+                remaining -= value;
+            }
+        }
+
+        return roman;
     }
 }

@@ -1,17 +1,22 @@
-import { Body, Controller, Post } from '@nestjs/common'; // Imports decorators for defining the Test-4 HTTP route.
-import { Test4Service } from './test-4.service.js'; // Imports the service used to handle the route.
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiBody } from '@nestjs/swagger';
+import { Test4Service } from './test-4.service.js';
 
 export type Test4Res = {
-    roman: string
-    number: number
-}
+    roman: string;
+    number: number;
+};
 
-@Controller() // Defines a controller with no shared route prefix.
-export class Test4Controller { // Declares the controller for Test-4 endpoints.
-    constructor(private readonly test4Service: Test4Service) { } // Injects the service that implements Test-4 behavior.
+type Test4Request = {
+    roman: string;
+    number: number;
+};
 
-    @Post('/test-3')
+@Controller()
+export class Test4Controller {
+    constructor(private readonly test4Service: Test4Service) { }
+
+    @Post('/test-4')
     @ApiBody({
         schema: {
             type: 'object',
@@ -19,13 +24,13 @@ export class Test4Controller { // Declares the controller for Test-4 endpoints.
                 roman: { type: 'string' },
                 number: { type: 'number' },
             },
-            required: ['roman', 'number',],
+            required: ['roman', 'number'],
         },
     })
-    test1(@Body() roman: string, number: number): Test4Res {
+    test4(@Body() body: Test4Request): Test4Res {
         return {
-            roman: this.test4Service.numberToRoman(number),
-            number: this.test4Service.romanToNumber(roman)
-        }
+            roman: this.test4Service.numberToRoman(body.number),
+            number: this.test4Service.romanToNumber(body.roman),
+        };
     }
-} 
+}

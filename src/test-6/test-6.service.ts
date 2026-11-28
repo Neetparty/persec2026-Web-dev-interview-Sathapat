@@ -1,26 +1,21 @@
 import { Injectable } from '@nestjs/common';
 
-// Commit 1: Research using Google and using AI for create test-6 structure file
-// Ref: https://github.com/doocs/leetcode/blob/main/solution/1100-1199/1137.N-th%20Tribonacci%20Number/README_EN.md
-
 @Injectable()
 export class Test6Service {
     Tribonacci(items: number[], range: number): { result: number[] } {
-        if (range <= items.length) return { result: items.slice(0, range) }
+        if (!Number.isInteger(range) || range < 0) throw new RangeError('Requested length must be a nonnegative integer.');
+        if (items.length > 3) throw new RangeError('Tribonacci accepts at most three initial values.');
+        if (!items.every(Number.isSafeInteger)) throw new RangeError('Initial values must be safe integers.');
 
-        let seed = 0
-        if (items.length < 3) seed = 3 - items.length
+        if (range <= items.length) return { result: items.slice(0, range) };
 
-        let newItems = [...new Array(seed).fill(0), ...items]
-
-        while (newItems.length < range + seed) {
-            const length = newItems.length
-            const sum = newItems[length - 1] + newItems[length - 2] + newItems[length - 3]
-            newItems.push(sum)
+        const missingSeeds = 3 - items.length;
+        const sequence = [...Array(missingSeeds).fill(0), ...items];
+        while (sequence.length < range + missingSeeds) {
+            const length = sequence.length;
+            sequence.push(sequence[length - 1] + sequence[length - 2] + sequence[length - 3]);
         }
 
-        if (seed > 0) newItems = newItems.slice(seed)
-
-        return { result: newItems }
+        return { result: sequence.slice(missingSeeds) };
     }
 }

@@ -3,8 +3,9 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class Test5Service {
     test(num: number): { result: number } {
-        return {
-            result: Number(num.toString().split("").map(Number).toSorted((a, b) => b - a).join(""))
-        }
+        if (!Number.isSafeInteger(num) || num <= 0) throw new RangeError('Input must be a positive safe integer.');
+
+        const result = Number(String(num).split('').toSorted((left, right) => Number(right) - Number(left)).join(''));
+        return { result };
     }
 }

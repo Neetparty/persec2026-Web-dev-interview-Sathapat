@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { Test5Service } from './test-5.service.js';
 import { ApiBody } from '@nestjs/swagger';
+import { Test5Service } from './test-5.service.js';
 
 @Controller()
 export class Test5Controller {
@@ -11,12 +11,12 @@ export class Test5Controller {
         schema: {
             type: 'object',
             properties: {
-                num: { type: 'number' }
+                num: { type: 'number' },
             },
             required: ['num'],
         },
     })
-    test5(@Body() num: number): { result: number } {
+    test5(@Body('num') num: number): { result: number } {
         return this.test5Service.test(num);
     }
 }
