@@ -1,32 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { Test1Res } from './test-1.controller.js';
 
-// Commit 1: Without Research
-// Commit 2: Research using Google 
-const brackets = { ')': '(', '}': '{', ']': '[' }
+const matchingOpeners: Record<string, string> = { ')': '(', '}': '{', ']': '[' };
+const validBrackets = new Set(['(', ')', '[', ']', '{', '}']);
 
 @Injectable()
 export class Test1Service {
     test(input: string): Test1Res {
-        const newArr = []
-        if (input.length % 2 === 1) {
-            return {
-                result: false
+        const openers: string[] = [];
+
+        for (const bracket of input) {
+            if (!validBrackets.has(bracket)) return { result: false };
+            if (!Object.hasOwn(matchingOpeners, bracket)) {
+                openers.push(bracket);
+                continue;
             }
+            if (openers.pop() !== matchingOpeners[bracket]) return { result: false };
         }
 
-        for (const c of input.split('')) {
-            if (!(c in brackets)) {
-                newArr.push(c);
-            } else if (newArr.length === 0 || newArr.pop() !== brackets[c as keyof typeof brackets]) {
-                return {
-                    result: false
-                }
-            }
-        }
-
-        return {
-            result: newArr.length === 0
-        }
+        return { result: openers.length === 0 };
     }
 }
