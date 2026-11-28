@@ -22,7 +22,7 @@ export class Test3Controller {
             required: ['search', 'items', 'maxResult'],
         },
     })
-    test1(@Body() search: string, items: string[], maxResult: number): Test3Res {
-        return this.test3Service.test(search, items, maxResult);
+    test1(@Body() body: { search: string, items: string[], maxResult: number }): Test3Res {
+        return this.test3Service.test(body.search, body.items, body.maxResult);
     }
 }

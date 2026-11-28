@@ -17,7 +17,7 @@ export class Test6Controller {
             required: ['items', 'range'],
         },
     })
-    test6(@Body() items: number[], range: number): { result: number[] } {
-        return this.test6Service.Tribonacci(items, range);
+    test6(@Body() body: { items: number[], range: number }): { result: number[] } {
+        return this.test6Service.Tribonacci(body.items, body.range);
     }
 }
