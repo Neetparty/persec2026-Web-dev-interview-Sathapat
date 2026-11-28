@@ -1,4 +1,6 @@
+
 # AI Prompt Log - Project Documentation and Interview Exercise Alignment
+
 
 ## Step / Prompt #1
 - **Model:** GPT-6
@@ -84,4 +86,67 @@ The exercise implementations and endpoints needed consistent behavior at the bou
 # Impact
 
 All six cases now have tests for their main behavior and relevant failure or boundary inputs. Cases 3–6 accept the documented JSON request bodies, Test-4 uses the correct route, and invalid values for the Roman numeral, positive integer, and Tribonacci requirements are rejected explicitly.
+> Next, create prompts.md on root project dir and update README.md to relate this project
+
+### AI Response
+Replaced the NestJS starter README with project-specific documentation describing the interview exercise API, its six case directories, the test commands, and build/lint commands. Created this root-level prompt log to record the project documentation request.
+
+```markdown
+# Web Development Interview Exercises
+
+This repository contains a NestJS and TypeScript API for a sequence of web development interview exercises. Each exercise lives in its own directory under `src/`, with a module, controller, service, and unit test.
+
+## Exercises
+
+| Case | Exercise |
+| --- | --- |
+| Test 1 | Validate whether a string of brackets is balanced. |
+| Test 2 | Sort alphanumeric strings in natural, case-insensitive order. |
+| Test 3 | Search items case-insensitively, rank matches, and limit the results. |
+| Test 4 | Convert between Roman numerals and integers. |
+| Test 5 | Rearrange a number's digits in descending order. |
+| Test 6 | Generate a Tribonacci sequence from supplied seed values. |
+
+The API modules are registered in `src/app.module.ts`. Each case's implementation and tests are in `src/test-N/`; AI-assisted work is recorded in the corresponding case's `prompts.md`. The repository-level `prompts.md` records project documentation requests.
+
+## Requirements
+
+- Node.js
+- npm
+
+## Install
+
+```bash
+npm install
+```
+
+## Run
+
+```bash
+# Start the API
+npm run start
+
+# Start with file watching
+npm run start:dev
+```
+
+## Test
+
+```bash
+# Run unit tests
+npm test
+
+# Run end-to-end tests
+npm run test:e2e
+
+# Run tests with coverage
+npm run test:cov
+```
+
+## Build and lint
+
+```bash
+npm run build
+npm run lint
+```
 ```

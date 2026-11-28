@@ -17,6 +17,12 @@ Each case is organized under `src/test-N/` with its Nest module, controller, ser
 
 The case tests cover the PDF examples as well as invalid inputs and boundary conditions, including empty inputs, result limits, positive integer constraints, and Tribonacci seed lengths.
 
+### Research and using AI for help
+Checkout branch: `main` or `feature/test-1`
+
+### AI full loop
+Checkout branch: `feature/test-using-full-ai-agent-loop`
+
 ## Requirements
 
 - Node.js
@@ -46,14 +52,17 @@ npm test
 # Runs the end-to-end test suite.
 npm run test:e2e
 # Runs unit tests and reports coverage.
+
 npm run test:cov
 ```
 
 ## Build and lint
 
 ```bash
+
 # Compiles the NestJS application.
 npm run build
 # Checks the source and test files with the configured linter.
+
 npm run lint
 ```
