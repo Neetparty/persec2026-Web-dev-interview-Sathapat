@@ -16,7 +16,7 @@ export class Test5Controller {
             required: ['num'],
         },
     })
-    test5(@Body() num: number): { result: number } {
+    test5(@Body('num') num: number): { result: number } {
         return this.test5Service.test(num);
     }
 }

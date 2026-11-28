@@ -11,7 +11,7 @@ export type Test4Res = {
 export class Test4Controller { // Declares the controller for Test-4 endpoints.
     constructor(private readonly test4Service: Test4Service) { } // Injects the service that implements Test-4 behavior.
 
-    @Post('/test-3')
+    @Post('/test-4')
     @ApiBody({
         schema: {
             type: 'object',
@@ -22,10 +22,10 @@ export class Test4Controller { // Declares the controller for Test-4 endpoints.
             required: ['roman', 'number',],
         },
     })
-    test1(@Body() roman: string, number: number): Test4Res {
+    test1(@Body() body: { roman: string, number: number }): Test4Res {
         return {
-            roman: this.test4Service.numberToRoman(number),
-            number: this.test4Service.romanToNumber(roman)
+            roman: this.test4Service.numberToRoman(body.number),
+            number: this.test4Service.romanToNumber(body.roman)
         }
     }
 } 
