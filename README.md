@@ -15,6 +15,12 @@ This repository contains a NestJS and TypeScript API for a sequence of web devel
 
 The API modules are registered in `src/app.module.ts`. Each case's implementation and tests are in `src/test-N/`; AI-assisted work is recorded in the corresponding case's `prompts.md`. The repository-level `prompts.md` records project documentation requests.
 
+### Research and using AI for help
+Checkout branch: `main` or `feature/test-1`
+
+### AI full loop
+Checkout branch: `feature/test-using-full-ai-agent-loop`
+
 ## Requirements
 
 - Node.js
